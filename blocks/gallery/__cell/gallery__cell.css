@@ -1,0 +1,6 @@
+.gallery__cell {
+  width: 282px;
+  max-height: 31px;
+  background-color: black;
+  overflow: hidden;
+}
