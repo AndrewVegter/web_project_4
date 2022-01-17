@@ -1,0 +1,22 @@
+.profile__bio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 30px;
+  padding: 0;
+  width: 415px;
+  min-height: 77px;
+}
+@media screen and (max-width: 775px) {
+  .profile__bio {
+    margin: 30px auto 36px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .profile__bio {
+    width: 224px;
+    min-height: 50px;
+  }
+}
