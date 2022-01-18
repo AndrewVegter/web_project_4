@@ -4,7 +4,7 @@
   outline: 2px solid white;
   background-color: black;
   padding: 0;
-  margin: 15px 0 15px auto;
+  margin: 15px 2px 15px auto;
   transition: 0.5s;
 }
 .profile__add-button:hover {

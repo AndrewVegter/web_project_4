@@ -1,0 +1,29 @@
+.popout__exit-button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  height: 40px;
+  width: 40px;
+  background-image: url("/images/Vector-close.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: 0.5s;
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  background-color: transparent;
+}
+
+.popout__exit-button:hover {
+  background-image: url("/images/Vector-close-dark.svg");
+  cursor: pointer;
+}
+@media screen and (max-width: 480px) {
+  .popout__exit-button {
+    width: 26px;
+    height: 26px;
+    top: -50px;
+    right: 5px;
+  }
+}

@@ -16,101 +16,103 @@
       />
       <h1 class="header__title">Around the U.S.</h1>
     </header>
-    <section class="profile">
-      <img
-        class="profile__avatar"
-        src="images/image-Profile.jpg"
-        alt="Profile picture"
-      />
-      <div class="profile__bio">
-        <h2 class="profile__name">Jacques Cousteau</h2>
-        <button class="profile__edit-button">
+    <main class="main">
+      <section class="profile">
+        <img
+          class="profile__avatar"
+          src="images/image-Profile.jpg"
+          alt="Profile picture"
+        />
+        <div class="profile__bio">
+          <h2 class="profile__name">Jacques Cousteau</h2>
+          <button class="profile__edit-button">
+            <img
+              class="profile__edit-button-icon"
+              src="images/Vector-edit.svg"
+              alt="edit button"
+            />
+          </button>
+          <p class="profile__career">Explorer</p>
+        </div>
+        <button class="profile__add-button">
           <img
-            class="profile__edit-button-icon"
-            src="images/Vector-edit.svg"
-            alt="edit button"
+            class="profile__add-button-icon"
+            src="images/Vector-add.svg"
+            alt="add button"
           />
         </button>
-        <p class="profile__career">Explorer</p>
-      </div>
-      <button class="profile__add-button">
-        <img
-          class="profile__add-button-icon"
-          src="images/Vector-add.svg"
-          alt="add button"
-        />
-      </button>
-    </section>
-    <section class="galley">
-      <ul class="gallery__container">
-        <li class="galley__cell">
-          <img
-            class="gallery__image"
-            src="images/Image-Yosemite.jpg"
-            alt="A picture of Yosemite"
-          />
-          <div class="gallery__plaque">
-            <h3 class="gallery__title">Yosemite Valley</h3>
-            <button class="gallery__button"></button>
-          </div>
-        </li>
-        <li class="galley__cell">
-          <img
-            class="gallery__image"
-            src="images/Image-Lake.jpg"
-            alt="A picture of Lake Louise"
-          />
-          <div class="gallery__plaque">
-            <h3 class="gallery__title">Lake Louise</h3>
-            <button class="gallery__button"></button>
-          </div>
-        </li>
-        <li class="galley__cell">
-          <img
-            class="gallery__image"
-            src="images/Image-Bald.jpg"
-            alt="A picture of the Bald Mountains"
-          />
-          <div class="gallery__plaque">
-            <h3 class="gallery__title">Bald Mountains</h3>
-            <button class="gallery__button"></button>
-          </div>
-        </li>
-        <li class="galley__cell">
-          <img
-            class="gallery__image"
-            src="images/Image-Latemar.jpg"
-            alt="A picture of Latemar"
-          />
-          <div class="gallery__plaque">
-            <h3 class="gallery__title">Latemar</h3>
-            <button class="gallery__button"></button>
-          </div>
-        </li>
-        <li class="galley__cell">
-          <img
-            class="gallery__image"
-            src="images/Image-Vanoise.jpg"
-            alt="A picture of Vanoise National Park"
-          />
-          <div class="gallery__plaque">
-            <h3 class="gallery__title">Vanoise National</h3>
-            <button class="gallery__button"></button>
-          </div>
-        </li>
-        <li class="galley__cell">
-          <img
-            class="gallery__image"
-            src="images/Image-Lago.jpg"
-            alt="A picture of Lago di Braies"
-          />
-          <div class="gallery__plaque">
-            <h3 class="gallery__title">Lago di Braies</h3>
-            <button class="gallery__button"></button>
-          </div>
-        </li>
-      </ul>
-    </section>
+      </section>
+      <section class="galley">
+        <ul class="gallery__container">
+          <li class="galley__cell">
+            <img
+              class="gallery__image"
+              src="images/Image-Yosemite.jpg"
+              alt="A picture of Yosemite"
+            />
+            <div class="gallery__plaque">
+              <h3 class="gallery__title">Yosemite Valley</h3>
+              <button class="gallery__button"></button>
+            </div>
+          </li>
+          <li class="galley__cell">
+            <img
+              class="gallery__image"
+              src="images/Image-Lake.jpg"
+              alt="A picture of Lake Louise"
+            />
+            <div class="gallery__plaque">
+              <h3 class="gallery__title">Lake Louise</h3>
+              <button class="gallery__button"></button>
+            </div>
+          </li>
+          <li class="galley__cell">
+            <img
+              class="gallery__image"
+              src="images/Image-Bald.jpg"
+              alt="A picture of the Bald Mountains"
+            />
+            <div class="gallery__plaque">
+              <h3 class="gallery__title">Bald Mountains</h3>
+              <button class="gallery__button"></button>
+            </div>
+          </li>
+          <li class="galley__cell">
+            <img
+              class="gallery__image"
+              src="images/Image-Latemar.jpg"
+              alt="A picture of Latemar"
+            />
+            <div class="gallery__plaque">
+              <h3 class="gallery__title">Latemar</h3>
+              <button class="gallery__button"></button>
+            </div>
+          </li>
+          <li class="galley__cell">
+            <img
+              class="gallery__image"
+              src="images/Image-Vanoise.jpg"
+              alt="A picture of Vanoise National Park"
+            />
+            <div class="gallery__plaque">
+              <h3 class="gallery__title">Vanoise National</h3>
+              <button class="gallery__button"></button>
+            </div>
+          </li>
+          <li class="galley__cell">
+            <img
+              class="gallery__image"
+              src="images/Image-Lago.jpg"
+              alt="A picture of Lago di Braies"
+            />
+            <div class="gallery__plaque">
+              <h3 class="gallery__title">Lago di Braies</h3>
+              <button class="gallery__button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
     <section class="popout">
       <div class="popout__container">
         <h2 class="popout__title">Edit profile</h2>
@@ -118,18 +120,20 @@
         <input
           type="text"
           id="name"
-          class="popout__name"
+          class="popout__form"
           placeholder="Name"
+          value=""
           required
         />
         <input
           type="text"
           id="about-me"
-          class="popout__name"
+          class="popout__form"
           placeholder="About me"
+          value=""
           required
         />
-        <button type="submit" class="popout__submit-button">Submit</button>
+        <button type="submit" class="popout__submit-button">Save</button>
       </div>
     </section>
     <footer class="footer">
