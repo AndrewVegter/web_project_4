@@ -22,4 +22,4 @@ This is a picture sharing website, created as my first project using JavaScript 
   * Edge
   * Opera
 
-### Link to page [here](https://andrewvegter.github.io/web_project_3/).
+### Link to page [here](https://andrewvegter.github.io/web_project_4/).
