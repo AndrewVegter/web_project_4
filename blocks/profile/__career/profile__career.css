@@ -1,4 +1,5 @@
 .profile__career {
+  width: 100%;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
@@ -9,7 +10,7 @@
 }
 @media screen and (max-width: 775px) {
   .profile__career {
-    margin: 0 auto;
+    text-align: center;
   }
 }
 @media screen and (max-width: 460px) {
