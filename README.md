@@ -1,16 +1,25 @@
-# Project 4: Around The U.S.
+# Web Project 4
+## Around the U.S.
 
-### Overview
+This is a picture sharing website, created as my first project using JavaScript -- hopefully I continue to get better at it =S.
 
-* Figma
-* Images
+### This webpage was made using
+  * HTML
+  * CSS
+  * (For my first time) JavaScript!
+  * BEM methodology
 
-**Figma**
+### Changes made
+  * None
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+### Future changes
+  * Add functionality to the add button so that one could add new picture cards.
+  * Add a way to change profile picture
 
-**Images**
+### Compatable with recent versions of
+  * Chrome
+  * Firefox
+  * Edge
+  * Opera
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+### Link to page [here](https://andrewvegter.github.io/web_project_4/).
