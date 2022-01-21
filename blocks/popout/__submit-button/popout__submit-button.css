@@ -2,6 +2,8 @@
   margin: 18px 0 0;
   width: 358px;
   height: 50px;
+  border: none;
+  border-radius: 2px;
   color: white;
   background-color: black;
   font-family: inherit;
@@ -12,7 +14,7 @@
 }
 
 .popout__submit-button:hover {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 480px) {

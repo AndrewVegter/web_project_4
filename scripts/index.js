@@ -1,12 +1,12 @@
 //let likeButtons = document.querySelectorAll(".gallery__button");
 let popoutButton = document.querySelector(".profile__edit-button");
-let submitButton = document.querySelector(".popout__submit-button");
 let exitButton = document.querySelector(".popout__exit-button");
 let formName = document.querySelector("#name");
 let formAbout = document.querySelector("#about-me");
 let profileName = document.querySelector(".profile__name");
 let profileAbout = document.querySelector(".profile__career");
 let popout = document.querySelector(".popout");
+let popoutForm = document.querySelector(".popout__container");
 
 function openPopout() {
     let nameValue = profileName.textContent;
@@ -28,7 +28,7 @@ function submitPopout(evt) {
 
     profileName.textContent = formName.value;
     profileAbout.textContent = formAbout.value;
-    openPopout();
+    exitPopout();
 }
 
 /*function likePicture(clicked) {
@@ -47,4 +47,4 @@ function addEventListenerList(list, way) {
 addEventListenerList(likeButtons, likePicture);*/
 popoutButton.addEventListener("click", openPopout);
 exitButton.addEventListener("click", exitPopout);
-submitButton.addEventListener("click", submitPopout);
+popoutForm.addEventListener("submit", submitPopout);

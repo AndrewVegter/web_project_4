@@ -14,7 +14,6 @@
         src="./images/logo.svg"
         alt="Title: Around the U.S."
       />
-      <h1 class="header__title">Around the U.S.</h1>
     </header>
     <main class="main">
       <section class="profile">
@@ -24,8 +23,8 @@
           alt="Profile picture"
         />
         <div class="profile__bio">
-          <h2 class="profile__name">Jacques Cousteau</h2>
-          <button class="profile__edit-button">
+          <h1 class="profile__name">Jacques Cousteau</h1>
+          <button type="button" name="edit" class="profile__edit-button">
             <img
               class="profile__edit-button-icon"
               src="./images/edit.svg"
@@ -34,7 +33,7 @@
           </button>
           <p class="profile__career">Explorer</p>
         </div>
-        <button class="profile__add-button">
+        <button type="button" name="add" class="profile__add-button">
           <img
             class="profile__add-button-icon"
             src="./images/add.svg"
@@ -51,8 +50,12 @@
               alt="A picture of Yosemite"
             />
             <div class="gallery__plaque">
-              <h3 class="gallery__title">Yosemite Valley</h3>
-              <button class="gallery__button" id="1"></button>
+              <h2 class="gallery__title">Yosemite Valley</h2>
+              <button
+                type="button"
+                name="like"
+                class="gallery__button"
+              ></button>
             </div>
           </li>
           <li class="gallery__cell">
@@ -62,8 +65,12 @@
               alt="A picture of Lake Louise"
             />
             <div class="gallery__plaque">
-              <h3 class="gallery__title">Lake Louise</h3>
-              <button class="gallery__button" id="2"></button>
+              <h2 class="gallery__title">Lake Louise</h2>
+              <button
+                type="button"
+                name="like"
+                class="gallery__button"
+              ></button>
             </div>
           </li>
           <li class="gallery__cell">
@@ -73,8 +80,12 @@
               alt="A picture of the Bald Mountains"
             />
             <div class="gallery__plaque">
-              <h3 class="gallery__title">Bald Mountains</h3>
-              <button class="gallery__button"></button>
+              <h2 class="gallery__title">Bald Mountains</h2>
+              <button
+                type="button"
+                name="like"
+                class="gallery__button"
+              ></button>
             </div>
           </li>
           <li class="gallery__cell">
@@ -84,8 +95,12 @@
               alt="A picture of Latemar"
             />
             <div class="gallery__plaque">
-              <h3 class="gallery__title">Latemar</h3>
-              <button class="gallery__button"></button>
+              <h2 class="gallery__title">Latemar</h2>
+              <button
+                type="button"
+                name="like"
+                class="gallery__button"
+              ></button>
             </div>
           </li>
           <li class="gallery__cell">
@@ -95,8 +110,12 @@
               alt="A picture of Vanoise National Park"
             />
             <div class="gallery__plaque">
-              <h3 class="gallery__title">Vanoise National Park</h3>
-              <button class="gallery__button"></button>
+              <h2 class="gallery__title">Vanoise National Park</h2>
+              <button
+                type="button"
+                name="like"
+                class="gallery__button"
+              ></button>
             </div>
           </li>
           <li class="gallery__cell">
@@ -106,17 +125,24 @@
               alt="A picture of Lago di Braies"
             />
             <div class="gallery__plaque">
-              <h3 class="gallery__title">Lago di Braies</h3>
-              <button class="gallery__button"></button>
+              <h2 class="gallery__title">Lago di Braies</h2>
+              <button
+                type="button"
+                name="like"
+                class="gallery__button"
+              ></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
-    <section class="popout">
-      <div class="popout__container">
+    <footer class="footer">
+      <p class="footer__copyright">© 2021 Around The U.S.</p>
+    </footer>
+    <div class="popout">
+      <form class="popout__container">
         <h2 class="popout__title">Edit profile</h2>
-        <button class="popout__exit-button"></button>
+        <button type="button" name="exit" class="popout__exit-button"></button>
         <input
           type="text"
           id="name"
@@ -134,11 +160,8 @@
           required
         />
         <button type="submit" class="popout__submit-button">Save</button>
-      </div>
-    </section>
-    <footer class="footer">
-      <p class="footer__copyright">© 2021 Around The U.S.</p>
-    </footer>
+      </form>
+    </div>
     <script src="scripts/index.js"></script>
   </body>
 </html>

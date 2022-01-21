@@ -6,11 +6,10 @@
   padding: 0;
   min-width: 282px;
   max-width: 548px;
-  height: 77px;
 }
 @media screen and (max-width: 775px) {
   .profile__bio {
-    margin: 30px auto 36px;
+    margin: 30px auto 33px;
     justify-content: center;
   }
 }
@@ -18,6 +17,5 @@
 @media screen and (max-width: 460px) {
   .profile__bio {
     width: 282px;
-    height: 50px;
   }
 }
