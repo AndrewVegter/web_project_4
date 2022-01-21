@@ -4,7 +4,7 @@
   border: none;
   height: 40px;
   width: 40px;
-  background-image: url("./images/close.svg");
+  background-image: url("../../../images/close.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -16,7 +16,7 @@
 }
 
 .popout__exit-button:hover {
-  background-image: url("./images/close-dark.svg");
+  background-image: url("../../../images/close-dark.svg");
   cursor: pointer;
 }
 @media screen and (max-width: 480px) {
