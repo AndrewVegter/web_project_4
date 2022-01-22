@@ -23,15 +23,10 @@
 @import url("../blocks/popout/popout.css");
 @import url("../blocks/popout/_visible/popout_visible.css");
 @import url("../blocks/popout/__container/popout__container.css");
+@import url("../blocks/popout/__forms/popout__forms.css");
 @import url("../blocks/popout/__title/popout__title.css");
 @import url("../blocks/popout/__exit-button/popout__exit-button.css");
 @import url("../blocks/popout/__form/popout__form.css");
 @import url("../blocks/popout/__submit-button/popout__submit-button.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
-
-.popout__forms {
-  padding: 0;
-  margin: 0;
-  font-family: inherit;
-}
