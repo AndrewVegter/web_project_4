@@ -6,7 +6,7 @@ let formAbout = document.querySelector("#about-me");
 let profileName = document.querySelector(".profile__name");
 let profileAbout = document.querySelector(".profile__career");
 let popout = document.querySelector(".popout");
-let popoutForm = document.querySelector(".popout__container");
+let popoutForm = document.querySelector(".popout__forms");
 
 function openPopout() {
     let nameValue = profileName.textContent;
