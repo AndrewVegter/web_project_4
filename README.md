@@ -10,10 +10,12 @@ This is a picture sharing website, created as my first project using JavaScript 
   * BEM methodology
 
 ### Changes made
-  * None
+  * Added ability to focus on specific images
+  * Added ability to add cards - <form> and function
+  * added likebutton functionality
+  * added ability to delete cards
 
 ### Future changes
-  * Add functionality to the add button so that one could add new picture cards.
   * Add a way to change profile picture
 
 ### Compatable with recent versions of
