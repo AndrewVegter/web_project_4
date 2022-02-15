@@ -1,24 +1,24 @@
-let editButton = document.querySelector(".profile__edit-button");
-let exitBio = document.querySelector("#exit-bio");
-let exitAdd = document.querySelector("#exit-add");
-let exitImage = document.querySelector("#exit-image");
-let addButton = document.querySelector(".profile__add-button");
-let popout = document.querySelector(".popout");
-let formBio = document.querySelector("#edit-container");
-let popoutEdit = document.querySelector("#edit-bio");
-let formName = document.querySelector("#name");
-let formAbout = document.querySelector("#about-me");
-let formAdd = document.querySelector("#add-container");
-let popoutAdd = document.querySelector("#add-image");
-let formTitle = document.querySelector("#title");
-let formLink = document.querySelector("#image");
-let profileName = document.querySelector(".profile__name");
-let profileAbout = document.querySelector(".profile__career");
-let cardContainer = document.querySelector(".gallery__container");
-let popoutImage = document.querySelector(".popout__image");
-let popoutImageTitle = document.querySelector(".popout__image-title");
-let popoutImageVeil = document.querySelector("#image-container");
-let initialCards = [
+const editButton = document.querySelector(".profile__edit-button");
+const exitBio = document.querySelector("#exit-bio");
+const exitAdd = document.querySelector("#exit-add");
+const exitImage = document.querySelector("#exit-image");
+const addButton = document.querySelector(".profile__add-button");
+const popout = document.querySelector(".popout");
+const formBio = document.querySelector("#edit-container");
+const popoutEdit = document.querySelector("#edit-bio");
+const formName = document.querySelector("#name");
+const formAbout = document.querySelector("#about-me");
+const formAdd = document.querySelector("#add-container");
+const popoutAdd = document.querySelector("#add-image");
+const formTitle = document.querySelector("#title");
+const formLink = document.querySelector("#image");
+const profileName = document.querySelector(".profile__name");
+const profileAbout = document.querySelector(".profile__career");
+const cardContainer = document.querySelector(".gallery__container");
+const popoutImage = document.querySelector(".popout__image");
+const popoutImageTitle = document.querySelector(".popout__image-title");
+const popoutImageVeil = document.querySelector("#image-container");
+const initialCards = [
     {
       name: "Yosemite Valley",
       link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
@@ -46,12 +46,12 @@ let initialCards = [
   ];
 
 function addCard(cardName, cardLink) {
-    let cardTemplate = document.querySelector("#card-template").content;
-    let cardAdded = cardTemplate.querySelector(".gallery__cell").cloneNode(true);
-    let cardTitle = cardAdded.querySelector(".gallery__title");
-    let cardImage = cardAdded.querySelector(".gallery__image");
-    let cardLike = cardAdded.querySelector(".gallery__button");
-    let cardDelete = cardAdded.querySelector(".gallery__delete-button");
+    const cardTemplate = document.querySelector("#card-template").content;
+    const cardAdded = cardTemplate.querySelector(".gallery__cell").cloneNode(true);
+    const cardTitle = cardAdded.querySelector(".gallery__title");
+    const cardImage = cardAdded.querySelector(".gallery__image");
+    const cardLike = cardAdded.querySelector(".gallery__button");
+    const cardDelete = cardAdded.querySelector(".gallery__delete-button");
     cardTitle.textContent = cardName;
     cardImage.alt = `A picture of ${cardName}`;
     cardImage.src = cardLink; 
@@ -77,8 +77,8 @@ initialCards.forEach(item => {
 });
 
 function exitPopout(evt) {
-    let targ = evt.currentTarget;
-    let container = targ.parentNode.parentNode;
+    const targ = evt.currentTarget;
+    const container = targ.parentNode.parentNode;
     formName.value = "";
     formAbout.value = "";
     formTitle.value = "";
@@ -95,8 +95,8 @@ function submitBio(evt) {
 }
 
 editButton.addEventListener("click", () => {
-    let nameValue = profileName.textContent;
-    let aboutValue = profileAbout.textContent;
+    const nameValue = profileName.textContent;
+    const aboutValue = profileAbout.textContent;
     formName.value = nameValue;
     formAbout.value = aboutValue;
     formBio.style.opacity = 1;
