@@ -1,0 +1,5 @@
+.popout__image-container {
+  position: relative;
+  background-color: transparent;
+  box-sizing: content-box;
+}

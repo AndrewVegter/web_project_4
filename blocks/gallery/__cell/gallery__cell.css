@@ -1,4 +1,5 @@
 .gallery__cell {
+  position: relative;
   width: 282px;
   background-color: black;
 }

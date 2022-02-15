@@ -42,112 +42,22 @@
         </button>
       </section>
       <section class="gallery">
-        <ul class="gallery__container">
-          <li class="gallery__cell">
-            <img
-              class="gallery__image"
-              src="./images/Image-Yosemite.jpg"
-              alt="A picture of Yosemite"
-            />
-            <div class="gallery__plaque">
-              <h2 class="gallery__title">Yosemite Valley</h2>
-              <button
-                type="button"
-                name="like"
-                class="gallery__button"
-              ></button>
-            </div>
-          </li>
-          <li class="gallery__cell">
-            <img
-              class="gallery__image"
-              src="./images/Image-Lake.jpg"
-              alt="A picture of Lake Louise"
-            />
-            <div class="gallery__plaque">
-              <h2 class="gallery__title">Lake Louise</h2>
-              <button
-                type="button"
-                name="like"
-                class="gallery__button"
-              ></button>
-            </div>
-          </li>
-          <li class="gallery__cell">
-            <img
-              class="gallery__image"
-              src="./images/Image-Bald.jpg"
-              alt="A picture of the Bald Mountains"
-            />
-            <div class="gallery__plaque">
-              <h2 class="gallery__title">Bald Mountains</h2>
-              <button
-                type="button"
-                name="like"
-                class="gallery__button"
-              ></button>
-            </div>
-          </li>
-          <li class="gallery__cell">
-            <img
-              class="gallery__image"
-              src="./images/Image-Latemar.jpg"
-              alt="A picture of Latemar"
-            />
-            <div class="gallery__plaque">
-              <h2 class="gallery__title">Latemar</h2>
-              <button
-                type="button"
-                name="like"
-                class="gallery__button"
-              ></button>
-            </div>
-          </li>
-          <li class="gallery__cell">
-            <img
-              class="gallery__image"
-              src="./images/Image-Vanoise.jpg"
-              alt="A picture of Vanoise National Park"
-            />
-            <div class="gallery__plaque">
-              <h2 class="gallery__title">Vanoise National Park</h2>
-              <button
-                type="button"
-                name="like"
-                class="gallery__button"
-              ></button>
-            </div>
-          </li>
-          <li class="gallery__cell">
-            <img
-              class="gallery__image"
-              src="./images/Image-Lago.jpg"
-              alt="A picture of Lago di Braies"
-            />
-            <div class="gallery__plaque">
-              <h2 class="gallery__title">Lago di Braies</h2>
-              <button
-                type="button"
-                name="like"
-                class="gallery__button"
-              ></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="gallery__container"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2021 Around The U.S.</p>
     </footer>
-    <div class="popout">
+    <div id="edit-container" class="popout">
       <div class="popout__container">
-        <form class="popout__forms">
+        <button
+          id="exit-bio"
+          type="button"
+          name="exit"
+          class="popout__exit-button"
+        ></button>
+        <form id="edit-bio" class="popout__forms">
           <h2 class="popout__title">Edit profile</h2>
-          <button
-            type="button"
-            name="exit"
-            class="popout__exit-button"
-          ></button>
           <input
             type="text"
             id="name"
@@ -168,6 +78,62 @@
         </form>
       </div>
     </div>
+    <div id="add-container" class="popout">
+      <div class="popout__container">
+        <button
+          id="exit-add"
+          type="button"
+          name="exit"
+          class="popout__exit-button"
+        ></button>
+        <form id="add-image" class="popout__forms">
+          <h2 class="popout__title">New place</h2>
+          <input
+            type="text"
+            id="title"
+            class="popout__form"
+            placeholder="title"
+            value=""
+            required
+          />
+          <input
+            type="text"
+            id="image"
+            class="popout__form"
+            placeholder="Image link"
+            value=""
+            required
+          />
+          <button type="submit" class="popout__submit-button">Create</button>
+        </form>
+      </div>
+    </div>
+    <div id="image-container" class="popout">
+      <div class="popout__image-container">
+        <button
+          id="exit-image"
+          type="button"
+          name="exit"
+          class="popout__exit-button"
+        ></button>
+        <img src="" alt="" class="popout__image" />
+        <h2 class="popout__image-title"></h2>
+      </div>
+    </div>
+    <template id="card-template">
+      <li class="gallery__cell">
+        <button
+          type="button"
+          name="delete"
+          class="gallery__delete-button"
+        ></button>
+        <img class="gallery__image" src= alt= />
+        <div class="gallery__plaque">
+          <h2 class="gallery__title"></h2>
+          <button type="button" name="like" class="gallery__button"></button>
+        </div>
+      </li>
+    </template>
     <script src="scripts/index.js"></script>
   </body>
 </html>
