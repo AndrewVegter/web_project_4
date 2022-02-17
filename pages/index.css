@@ -32,6 +32,6 @@
 @import url("../blocks/popout/__image-container/popout__image-container.css");
 @import url("../blocks/popout/__image/popout__image.css");
 @import url("../blocks/popout/__image-title/popout__image-title.css");
-@import url("../blocks/popout/__visibility/popout__visibility_invisible.css");
+@import url("../blocks/invisible/invisible.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");

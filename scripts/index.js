@@ -80,7 +80,7 @@ initialCards.forEach(item => {
 });
 
 function togglePopup(container) {
-  container.classList.toggle("popout__visibility_invisible");
+  container.classList.toggle("invisible");
 }
 
 function exitPopup(evt) {
