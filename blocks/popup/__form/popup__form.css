@@ -1,4 +1,4 @@
-.popout__form {
+.popup__form {
   font-family: inherit;
   font-size: 14px;
   font-weight: 400;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .popout__form {
+  .popup__form {
     padding: 0 0 8px;
     width: 238px;
   }

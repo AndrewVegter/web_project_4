@@ -14,8 +14,8 @@ const formLink = document.querySelector("#image");
 const profileName = document.querySelector(".profile__name");
 const profileAbout = document.querySelector(".profile__career");
 const cardContainer = document.querySelector(".gallery__container");
-const popupImage = document.querySelector(".popout__image");
-const popupImageTitle = document.querySelector(".popout__image-title");
+const popupImage = document.querySelector(".popup__image");
+const popupImageTitle = document.querySelector(".popup__image-title");
 const popupImageVeil = document.querySelector("#image-container");
 const cardTemplate = document.querySelector("#card-template").content;
 const initialCards = [
@@ -45,37 +45,37 @@ const initialCards = [
     }
   ];
 
-function renderCard(cardName, cardLink) {
-    const cardAdded = cardTemplate.querySelector(".gallery__cell").cloneNode(true);
-    const cardTitle = cardAdded.querySelector(".gallery__title");
-    const cardImage = cardAdded.querySelector(".gallery__image");
-    const cardLike = cardAdded.querySelector(".gallery__button");
-    const cardDelete = cardAdded.querySelector(".gallery__delete-button");
+function prepCard(cardName, cardLink) {
+    const preppedCard = cardTemplate.querySelector(".gallery__cell").cloneNode(true);
+    const cardTitle = preppedCard.querySelector(".gallery__title");
+    const cardImage = preppedCard.querySelector(".gallery__image");
+    const cardLike = preppedCard.querySelector(".gallery__button");
+    const cardDelete = preppedCard.querySelector(".gallery__delete-button");
     cardTitle.textContent = cardName;
     cardImage.alt = `A picture of ${cardName}`;
     cardImage.src = cardLink; 
     cardImage.addEventListener("click", () => {
-      popupImage.src = cardImage.src;
+      popupImage.src = cardLink;
       popupImage.alt = cardImage.alt;
-      popupImageTitle.textContent = cardTitle.textContent;
+      popupImageTitle.textContent = cardName;
       togglePopup(popupImageVeil);
     });
     cardDelete.addEventListener("click", () => {
-        cardAdded.remove();
+        preppedCard.remove();
     });
     cardLike.addEventListener("click", () => {
         cardLike.classList.toggle("gallery__button_active");
     });
-    return cardAdded;
+    return preppedCard;
 }
 
-function createCard(name, link) {
-  const card = renderCard(name, link);
+function renderCard(name, link) {
+  const card = prepCard(name, link);
   cardContainer.prepend(card);
 }
 
 initialCards.forEach(item => {
-    createCard(item.name, item.link);
+    renderCard(item.name, item.link);
     return;
 });
 
@@ -85,7 +85,7 @@ function togglePopup(container) {
 
 function exitPopup(evt) {
     const targ = evt.currentTarget;
-    const container = targ.parentNode.parentNode;
+    const container = targ.closest(".popup");
     togglePopup(container);
 }
 
@@ -123,6 +123,6 @@ popupEdit.addEventListener("submit", submitBio);
 
 popupAdd.addEventListener("submit", (evt) => {
     evt.preventDefault();
-    createCard(`${formTitle.value}`, formLink.value)
+    renderCard(`${formTitle.value}`, formLink.value)
     exitPopup(evt);
 });

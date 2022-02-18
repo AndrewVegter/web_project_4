@@ -1,4 +1,4 @@
-.popout__exit-button {
+.popup__exit-button {
   padding: 0;
   margin: 0;
   border: none;
@@ -15,12 +15,12 @@
   background-color: transparent;
 }
 
-.popout__exit-button:hover {
+.popup__exit-button:hover {
   background-image: url("../../../images/close-dark.svg");
   cursor: pointer;
 }
 @media screen and (max-width: 480px) {
-  .popout__exit-button {
+  .popup__exit-button {
     width: 26px;
     height: 26px;
     top: -50px;
