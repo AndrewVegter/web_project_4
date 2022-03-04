@@ -1,0 +1,19 @@
+.popup__error {
+  width: 358px;
+  font-family: inherit;
+  visibility: hidden;
+  opacity: 0;
+  display: block;
+  font-size: 12px;
+  line-height: 1.21;
+  font-weight: 400;
+  color: #ff0000;
+  opacity: 100;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  z-index: 2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

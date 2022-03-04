@@ -1,8 +1,8 @@
-.popup__submit-button {
+.popup__button {
   margin: 18px 0 0;
-  width: 358px;
-  height: 50px;
-  border: none;
+  width: 356px;
+  height: 48px;
+  border: 1px solid black;
   border-radius: 2px;
   color: white;
   background-color: black;
@@ -10,16 +10,17 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 1.1;
-  transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear, border 0.5s linear;
 }
 
-.popup__submit-button:hover {
+.popup__button:hover {
   background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
   cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
-  .popup__submit-button {
+  .popup__button {
     font-size: 14px;
     line-height: 1.2;
     margin: 16px 0 0;

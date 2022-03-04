@@ -58,7 +58,7 @@ function prepCard(cardName, cardLink) {
       popupImage.src = cardLink;
       popupImage.alt = cardImage.alt;
       popupImageTitle.textContent = cardName;
-      togglePopup(popupImageVeil);
+      openPopup(popupImageVeil);
     });
     cardDelete.addEventListener("click", () => {
         preppedCard.remove();
@@ -79,14 +79,13 @@ initialCards.forEach(item => {
     return;
 });
 
-function togglePopup(container) {
-  container.classList.toggle("invisible");
+function openPopup(container) {
+  container.classList.remove("invisible");
 }
 
 function exitPopup(evt) {
-    const targ = evt.currentTarget;
-    const container = targ.closest(".popup");
-    togglePopup(container);
+    const container = evt.target.closest(".popup");
+    container.classList.add("invisible");
 }
 
 function resetAdd(evt) {
@@ -106,11 +105,11 @@ editButton.addEventListener("click", () => {
     const aboutValue = profileAbout.textContent;
     formName.value = nameValue;
     formAbout.value = aboutValue;
-    togglePopup(formBio);
+    openPopup(formBio);
 });
 
 addButton.addEventListener("click", () => {
-    togglePopup(formAdd);
+    openPopup(formAdd);
 })
 
 exitBio.addEventListener("click", exitPopup);
@@ -124,5 +123,33 @@ popupEdit.addEventListener("submit", submitBio);
 popupAdd.addEventListener("submit", (evt) => {
     evt.preventDefault();
     renderCard(`${formTitle.value}`, formLink.value)
-    exitPopup(evt);
+    resetAdd(evt);
 });
+
+function setExitEventListeners(containerElement) {
+  containerElement.addEventListener("click", (evt) => {
+    if (evt.target === containerElement) {
+      exitPopup(evt);
+    }
+  })
+  containerElement.addEventListener("keydown", (evt) => {
+    keyActionHandler(evt, containerElement);
+  })
+}
+
+function enableEventListeners() {
+  const popupContainers = Array.from(document.querySelectorAll(".popup"));
+  popupContainers.forEach((container) => {
+    setExitEventListeners(container);
+  })
+}
+
+function keyActionHandler(evt, cont) {
+  if (evt.key === "Escape") {
+    cont.classList.add("invisible");
+    console.log("worked");
+  }
+}
+
+enableEventListeners();
+
