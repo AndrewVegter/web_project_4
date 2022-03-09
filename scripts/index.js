@@ -81,15 +81,8 @@ initialCards.forEach(item => {
 
 function openPopup(container) {
   container.classList.remove("invisible");
-  document.addEventListener("mousedown", exitPopupAlternative);
-  document.addEventListener("keydown", exitPopupAlternative);
-}
-
-function exitPopup(evt) {
-    const container = evt.target.closest(".popup");
-    closePopup(container);
-    document.removeEventListener("mousedown", exitPopupAlternative);
-    document.removeEventListener("keydown", exitPopupAlternative);
+  document.addEventListener("mousedown", exitPopupCaller);
+  document.addEventListener("keydown", exitPopupCaller);
 }
 
 function closePopup(container) {
@@ -99,7 +92,7 @@ function submitBio(evt) {
     evt.preventDefault();
     profileName.textContent = formName.value;
     profileAbout.textContent = formAbout.value;
-    exitPopup(evt);
+    exitPopup();
 }
 
 editButton.addEventListener("click", () => {
@@ -128,20 +121,33 @@ popupEdit.addEventListener("submit", submitBio);
 popupAdd.addEventListener("submit", (evt) => {
     evt.preventDefault();
     renderCard(formTitle.value, formLink.value)
-    exitPopup(evt);
+    exitPopup();
     popupAdd.reset();
 });
 
-function exitPopupAlternative(evt) {
+function exitPopupCaller(evt) {
   if (evt.target.classList.contains("popup")) {
-    exitPopup(evt);
+    exitPopup();
   }
   else if (evt.key === "Escape") {
-    const containers = Array.from(document.querySelectorAll(".popup"));
-    containers.forEach((container) => {
-      if (!container.classList.contains("invisible")) {
-        closePopup(container);
-      }
-    })
+    exitPopup();
   }
 }
+
+function exitPopup() {
+  const containers = Array.from(document.querySelectorAll(".popup"));
+  containers.forEach((container) => {
+    if (!container.classList.contains("invisible")) {
+      closePopup(container);
+    }
+  })
+  document.removeEventListener("mousedown", exitPopupCaller);
+  document.removeEventListener("keydown", exitPopupCaller);
+}
+
+/*function exitPopup(evt) {
+    const container = evt.target.closest(".popup");
+    closePopup(container);
+    document.removeEventListener("mousedown", exitPopupAlternative);
+    document.removeEventListener("keydown", exitPopupAlternative);
+}*/
