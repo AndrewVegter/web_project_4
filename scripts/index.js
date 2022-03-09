@@ -81,18 +81,20 @@ initialCards.forEach(item => {
 
 function openPopup(container) {
   container.classList.remove("invisible");
+  document.addEventListener("mousedown", exitPopupAlternative);
+  document.addEventListener("keydown", exitPopupAlternative);
 }
 
 function exitPopup(evt) {
     const container = evt.target.closest(".popup");
-    container.classList.add("invisible");
+    closePopup(container);
+    document.removeEventListener("mousedown", exitPopupAlternative);
+    document.removeEventListener("keydown", exitPopupAlternative);
 }
 
-function resetAdd(evt) {
-  popupAdd.reset();
-  exitPopup(evt);
+function closePopup(container) {
+  container.classList.add("invisible");
 }
-
 function submitBio(evt) {
     evt.preventDefault();
     profileName.textContent = formName.value;
@@ -110,11 +112,14 @@ editButton.addEventListener("click", () => {
 
 addButton.addEventListener("click", () => {
     openPopup(formAdd);
+    const inputList = Array.from(formAdd.querySelectorAll(`${validationObj.inputSelector}`))
+    const buttonElement = formAdd.querySelector(`${validationObj.submitButtonSelector}`);
+    toggleButtonState(inputList, buttonElement, validationObj);
 })
 
 exitBio.addEventListener("click", exitPopup);
 
-exitAdd.addEventListener("click", resetAdd);
+exitAdd.addEventListener("click", exitPopup);
 
 exitImage.addEventListener("click", exitPopup);
 
@@ -122,34 +127,21 @@ popupEdit.addEventListener("submit", submitBio);
 
 popupAdd.addEventListener("submit", (evt) => {
     evt.preventDefault();
-    renderCard(`${formTitle.value}`, formLink.value)
-    resetAdd(evt);
+    renderCard(formTitle.value, formLink.value)
+    exitPopup(evt);
+    popupAdd.reset();
 });
 
-function setExitEventListeners(containerElement) {
-  containerElement.addEventListener("click", (evt) => {
-    if (evt.target === containerElement) {
-      exitPopup(evt);
-    }
-  })
-  containerElement.addEventListener("keydown", (evt) => {
-    keyActionHandler(evt, containerElement);
-  })
-}
-
-function enableEventListeners() {
-  const popupContainers = Array.from(document.querySelectorAll(".popup"));
-  popupContainers.forEach((container) => {
-    setExitEventListeners(container);
-  })
-}
-
-function keyActionHandler(evt, cont) {
-  if (evt.key === "Escape") {
-    cont.classList.add("invisible");
-    console.log("worked");
+function exitPopupAlternative(evt) {
+  if (evt.target.classList.contains("popup")) {
+    exitPopup(evt);
+  }
+  else if (evt.key === "Escape") {
+    const containers = Array.from(document.querySelectorAll(".popup"));
+    containers.forEach((container) => {
+      if (!container.classList.contains("invisible")) {
+        closePopup(container);
+      }
+    })
   }
 }
-
-enableEventListeners();
-
