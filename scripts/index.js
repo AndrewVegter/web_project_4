@@ -81,18 +81,20 @@ initialCards.forEach(item => {
 
 function openPopup(container) {
   container.classList.remove("invisible");
-  document.addEventListener("mousedown", exitPopupCaller);
-  document.addEventListener("keydown", exitPopupCaller);
+  document.addEventListener("mousedown", closePopupCaller);
+  document.addEventListener("keydown", closePopupCaller);
 }
 
 function closePopup(container) {
   container.classList.add("invisible");
+  document.removeEventListener("mousedown", closePopupCaller);
+  document.removeEventListener("keydown", closePopupCaller);
 }
 function submitBio(evt) {
     evt.preventDefault();
     profileName.textContent = formName.value;
     profileAbout.textContent = formAbout.value;
-    exitPopup();
+    closeOpenedPopup();
 }
 
 editButton.addEventListener("click", () => {
@@ -105,44 +107,41 @@ editButton.addEventListener("click", () => {
 
 addButton.addEventListener("click", () => {
     openPopup(formAdd);
-    const inputList = Array.from(formAdd.querySelectorAll(`${validationObj.inputSelector}`))
-    const buttonElement = formAdd.querySelector(`${validationObj.submitButtonSelector}`);
+    const inputList = Array.from(formAdd.querySelectorAll(validationObj.inputSelector))
+    const buttonElement = formAdd.querySelector(validationObj.submitButtonSelector);
     toggleButtonState(inputList, buttonElement, validationObj);
 })
 
-exitBio.addEventListener("click", exitPopup);
+exitBio.addEventListener("click", closeOpenedPopup);
 
-exitAdd.addEventListener("click", exitPopup);
+exitAdd.addEventListener("click", closeOpenedPopup);
 
-exitImage.addEventListener("click", exitPopup);
+exitImage.addEventListener("click", closeOpenedPopup);
 
 popupEdit.addEventListener("submit", submitBio);
 
 popupAdd.addEventListener("submit", (evt) => {
     evt.preventDefault();
     renderCard(formTitle.value, formLink.value)
-    exitPopup();
+    closeOpenedPopup();
     popupAdd.reset();
 });
 
-function exitPopupCaller(evt) {
+function closePopupCaller(evt) {
   if (evt.target.classList.contains("popup")) {
-    exitPopup();
+    closeOpenedPopup();
   }
   else if (evt.key === "Escape") {
-    exitPopup();
+    closeOpenedPopup();
   }
 }
 
-function exitPopup() {
-  const containers = Array.from(document.querySelectorAll(".popup"));
-  containers.forEach((container) => {
-    if (!container.classList.contains("invisible")) {
-      closePopup(container);
-    }
-  })
-  document.removeEventListener("mousedown", exitPopupCaller);
-  document.removeEventListener("keydown", exitPopupCaller);
+function closeOpenedPopup() {
+  /* Spent way too long trying to figure out how to select just the opened popup, since my previous method was relating "evt.target"
+  to the popup, but that doesn't seem to work for keydown events as I'm assuming the target of keydown was the document, unless the key was 
+  entered into a textfield. Anyway, thanks for showing me that you can use ":not" in the selector! :D */
+  const openedPopup = document.querySelector(".popup:not(.invisible)");
+  closePopup(openedPopup);
 }
 
 /*function exitPopup(evt) {
