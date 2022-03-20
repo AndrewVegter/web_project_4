@@ -1,23 +1,7 @@
-const editButton = document.querySelector(".profile__edit-button");
-const exitBio = document.querySelector("#exit-bio");
-const exitAdd = document.querySelector("#exit-add");
-const exitImage = document.querySelector("#exit-image");
-const addButton = document.querySelector(".profile__add-button");
-const formBio = document.querySelector("#edit-container");
-const popupEdit = document.querySelector("#edit-bio");
-const formName = document.querySelector("#name");
-const formAbout = document.querySelector("#about-me");
-const formAdd = document.querySelector("#add-container");
-const popupAdd = document.querySelector("#add-image");
-const formTitle = document.querySelector("#title");
-const formLink = document.querySelector("#image");
-const profileName = document.querySelector(".profile__name");
-const profileAbout = document.querySelector(".profile__career");
-const cardContainer = document.querySelector(".gallery__container");
-const popupImage = document.querySelector(".popup__image");
-const popupImageTitle = document.querySelector(".popup__image-title");
-const popupImageVeil = document.querySelector("#image-container");
-const cardTemplate = document.querySelector("#card-template").content;
+import { formAdd, formEdit } from "./utils.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const initialCards = [
     {
       name: "Yosemite Valley",
@@ -45,108 +29,21 @@ const initialCards = [
     }
   ];
 
-function prepCard(cardName, cardLink) {
-    const preppedCard = cardTemplate.querySelector(".gallery__cell").cloneNode(true);
-    const cardTitle = preppedCard.querySelector(".gallery__title");
-    const cardImage = preppedCard.querySelector(".gallery__image");
-    const cardLike = preppedCard.querySelector(".gallery__button");
-    const cardDelete = preppedCard.querySelector(".gallery__delete-button");
-    cardTitle.textContent = cardName;
-    cardImage.alt = `A picture of ${cardName}`;
-    cardImage.src = cardLink; 
-    cardImage.addEventListener("click", () => {
-      popupImage.src = cardLink;
-      popupImage.alt = cardImage.alt;
-      popupImageTitle.textContent = cardName;
-      openPopup(popupImageVeil);
-    });
-    cardDelete.addEventListener("click", () => {
-        preppedCard.remove();
-    });
-    cardLike.addEventListener("click", () => {
-        cardLike.classList.toggle("gallery__button_active");
-    });
-    return preppedCard;
-}
-
-function renderCard(name, link) {
-  const card = prepCard(name, link);
-  cardContainer.prepend(card);
-}
-
-initialCards.forEach(item => {
-    renderCard(item.name, item.link);
-    return;
-});
-
-function openPopup(container) {
-  container.classList.remove("invisible");
-  document.addEventListener("mousedown", closePopupCaller);
-  document.addEventListener("keydown", closePopupCaller);
-}
-
-function closePopup(container) {
-  container.classList.add("invisible");
-  document.removeEventListener("mousedown", closePopupCaller);
-  document.removeEventListener("keydown", closePopupCaller);
-}
-function submitBio(evt) {
-    evt.preventDefault();
-    profileName.textContent = formName.value;
-    profileAbout.textContent = formAbout.value;
-    closeOpenedPopup();
-}
-
-editButton.addEventListener("click", () => {
-    const nameValue = profileName.textContent;
-    const aboutValue = profileAbout.textContent;
-    formName.value = nameValue;
-    formAbout.value = aboutValue;
-    openPopup(formBio);
-});
-
-addButton.addEventListener("click", () => {
-    openPopup(formAdd);
-    const inputList = Array.from(formAdd.querySelectorAll(validationObj.inputSelector))
-    const buttonElement = formAdd.querySelector(validationObj.submitButtonSelector);
-    toggleButtonState(inputList, buttonElement, validationObj);
+initialCards.forEach((item) => {
+  const initialCard = new Card(item.name, item.link, "#card-template");
+  initialCard.renderCard();
 })
 
-exitBio.addEventListener("click", closeOpenedPopup);
-
-exitAdd.addEventListener("click", closeOpenedPopup);
-
-exitImage.addEventListener("click", closeOpenedPopup);
-
-popupEdit.addEventListener("submit", submitBio);
-
-popupAdd.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-    renderCard(formTitle.value, formLink.value)
-    closeOpenedPopup();
-    popupAdd.reset();
-});
-
-function closePopupCaller(evt) {
-  if (evt.target.classList.contains("popup")) {
-    closeOpenedPopup();
-  }
-  else if (evt.key === "Escape") {
-    closeOpenedPopup();
-  }
+const validationObj = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible"
 }
 
-function closeOpenedPopup() {
-  /* Spent way too long trying to figure out how to select just the opened popup, since my previous method was relating "evt.target"
-  to the popup, but that doesn't seem to work for keydown events as I'm assuming the target of keydown was the document, unless the key was 
-  entered into a textfield. Anyway, thanks for showing me that you can use ":not" in the selector! :D */
-  const openedPopup = document.querySelector(".popup:not(.invisible)");
-  closePopup(openedPopup);
-}
+const validatedFormAdd = new FormValidator(formAdd, validationObj);
+validatedFormAdd.enableValidation();
 
-/*function exitPopup(evt) {
-    const container = evt.target.closest(".popup");
-    closePopup(container);
-    document.removeEventListener("mousedown", exitPopupAlternative);
-    document.removeEventListener("keydown", exitPopupAlternative);
-}*/
+const validatedFormEdit = new FormValidator(formEdit, validationObj);
+validatedFormEdit.enableValidation();
