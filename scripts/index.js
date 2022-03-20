@@ -34,6 +34,8 @@ initialCards.forEach((item) => {
   initialCard.renderCard();
 })
 
+const forms = [formAdd, formEdit]
+
 const validationObj = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -42,8 +44,7 @@ const validationObj = {
   errorClass: "popup__error_visible"
 }
 
-const validatedFormAdd = new FormValidator(formAdd, validationObj);
-validatedFormAdd.enableValidation();
-
-const validatedFormEdit = new FormValidator(formEdit, validationObj);
-validatedFormEdit.enableValidation();
+forms.forEach((form) => {
+  const validatedForm = new FormValidator(form, validationObj);
+  validatedForm.enableValidation();
+})
