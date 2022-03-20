@@ -26,7 +26,9 @@ function closePopup(container) {
 
 function closeOpenedPopup() {
     const openedPopup = document.querySelector(".popup:not(.invisible)");
+    const openedForm = openedPopup.querySelector(".popup__form");
     closePopup(openedPopup);
+    openedForm.reset();
 }
 
 function closePopupCaller(evt) {

@@ -15,7 +15,7 @@ export default class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._keys.inputSelector));
         this._buttonElement = this._formElement.querySelector(this._keys.submitButtonSelector);
         this._toggleButtonState();
-        this._formElement.addEventListener("mouseover", () => {
+        this._formElement.addEventListener("reset", () => {
             this._toggleButtonState();
         })
         this._inputList.forEach((inputElement) => {
