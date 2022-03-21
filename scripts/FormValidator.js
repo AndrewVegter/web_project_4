@@ -12,7 +12,7 @@ export default class FormValidator {
     }
 
     _setEventListeners() {
-        this._inputList = Array.from(this._formElement.querySelectorAll(this._keys.inputSelector));
+        this._inputList = [...this._formElement.querySelectorAll(this._keys.inputSelector)];
         this._buttonElement = this._formElement.querySelector(this._keys.submitButtonSelector);
         this._toggleButtonState();
         this._formElement.addEventListener("reset", () => {

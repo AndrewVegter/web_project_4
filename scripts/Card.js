@@ -1,11 +1,12 @@
-import { openPopup } from "./utils.js";
+import { openPopup } from "./utils/utils.js";
+import { popupImageVeil, popupImage, popupImageTitle } from "./index.js";
+
 export default class Card {
     constructor(heading, link, cardSelector) {
         this._heading = heading;
         this._link = link;
         this._cardSelector = cardSelector;
         this._isLiked = false;
-        this._container = document.querySelector(".gallery__container");
     }
 
     _getTemplate() {
@@ -14,16 +15,16 @@ export default class Card {
     }
 
     _initiateCard() {
-        this._initiatedCard = this._getTemplate();
-        this._title = this._initiatedCard.querySelector(".gallery__title");
-        this._image = this._initiatedCard.querySelector(".gallery__image");
-        this._like = this._initiatedCard.querySelector(".gallery__button");
-        this._delete = this._initiatedCard.querySelector(".gallery__delete-button");
-        this._title.textContent = this._heading;
+        this._cardElement = this._getTemplate();
+        const title = this._cardElement.querySelector(".gallery__title");
+        this._image = this._cardElement.querySelector(".gallery__image");
+        this._like = this._cardElement.querySelector(".gallery__button");
+        this._delete = this._cardElement.querySelector(".gallery__delete-button");
+        title.textContent = this._heading;
         this._image.alt = `A picture of ${this._heading}.`;
         this._image.src = this._link;
         this._setEventListeners();
-        return this._initiatedCard;
+        return this._cardElement;
     }
 
     _setEventListeners() {
@@ -44,21 +45,18 @@ export default class Card {
     }
 
     _deleteCard() {
-        this._initiatedCard.remove();
+        this._cardElement.remove();
     }
 
     _expandCard() {
-        const popupImageVeil = document.querySelector("#image-container");
-        const popupImage = popupImageVeil.querySelector(".popup__image");
-        const popupImageTitle = popupImageVeil.querySelector(".popup__image-title");
         popupImage.src = this._link;
         popupImage.alt = this._image.alt;
         popupImageTitle.textContent = this._heading;
         openPopup(popupImageVeil);
     }
 
-    renderCard() {
+    renderCard(container) {
         const card = this._initiateCard();
-        this._container.prepend(card);
+        container.prepend(card);
     }
 }
