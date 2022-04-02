@@ -33,4 +33,25 @@ const initialCards = [
     }
 ];
 
-export { validationObj, initialCards }
+const cardSelectorList = {
+  templateSelector: "#card-template",
+  likeActiveClass: "gallery__button_active",
+  deleteSelector: ".gallery__delete-button",
+  likeSelector: ".gallery__button",
+  imageSelector: ".gallery__image",
+  titleSelector: ".gallery__title",
+  cardSelector: ".gallery__cell"
+}
+
+const popupImageVeil = document.querySelector("#image-container");
+const popupImage = popupImageVeil.querySelector(".popup__image");
+const popupImageTitle = popupImageVeil.querySelector(".popup__image-title");
+const inputName = document.querySelector("#name");
+const inputAbout = document.querySelector("#about-me");
+const editButton = document.querySelector(".profile__edit-button");
+const addButton = document.querySelector(".profile__add-button");
+const formSelectors = ["#edit-bio", "#add-image"];
+const userSelectors = {nameSelector: ".profile__name", jobSelector: ".profile__career"};
+
+export { validationObj, initialCards, cardSelectorList, popupImage, 
+  popupImageTitle, inputName, inputAbout, editButton, addButton, formSelectors, userSelectors }

@@ -1,76 +1,65 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import { validationObj, initialCards } from "./utils/constants.js";
-import { openPopup,  closeOpenedPopup } from "./utils/utils.js";
+import Card from "./components/Card.js";
+import Section from "./components/Section.js";
+import FormValidator from "./components/FormValidator.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import UserInfo from "./components/UserInfo.js";
+import { validationObj, initialCards, cardSelectorList, inputName, 
+  inputAbout, editButton, addButton, formSelectors, userSelectors } from "./utils/constants.js";
 
-//declaring variables section//
-const popupBio = document.querySelector("#edit-container");
-const formBio = popupBio.querySelector("#edit-bio");
-const inputName = formBio.querySelector("#name");
-const inputAbout = formBio.querySelector("#about-me");
-const popupAdd = document.querySelector("#add-container");
-const formAdd = popupAdd.querySelector("#add-image");
-const inputTitle = formAdd.querySelector("#title");
-const inputLink = formAdd.querySelector("#image");
-const editButton = document.querySelector(".profile__edit-button");
-const addButton = document.querySelector(".profile__add-button");
-const profileName = document.querySelector(".profile__name");
-const profileAbout = document.querySelector(".profile__career");
-const cardContainer = document.querySelector(".gallery__container");
-const exitButtons = document.querySelectorAll(".popup__exit-button");
-const popupImageVeil = document.querySelector("#image-container");
-const popupImage = popupImageVeil.querySelector(".popup__image");
-const popupImageTitle = popupImageVeil.querySelector(".popup__image-title");
-const forms = [formAdd, formBio];
+const userBio = new UserInfo({ selectors: userSelectors });
 
-//declaring functions section//
-function addCard(name, link, templateSelector) {
-  const newCard = new Card (name, link, templateSelector);
-  newCard.renderCard(cardContainer);
-  //Would have named this function renderCard like you suggested but I already used that name in the class and it seemed confusing//
-}
-
-//iterating arrays section//
-initialCards.forEach((card) => {
-  addCard(card.name, card.link, "#card-template");
+const bioForm = new PopupWithForm("#edit-container", (formObj) => {
+  const inputValues = formObj._getInputValues();
+  userBio.setUserInfo({ name: inputValues.input1, job: inputValues.input2 })
 });
 
-forms.forEach((form) => {
-  const validatedForm = new FormValidator(form, validationObj);
+const addForm = new PopupWithForm("#add-container", (formObj) => {
+  const inputValues = formObj._getInputValues();
+  const translatedValues = {name: inputValues.input1, link: inputValues.input2};
+  const userCard = new Section({
+    items: translatedValues,
+    renderer: (item) => {
+      const cardItem = new Card({ data: item, clickHandler: (title, link) => {popupImage.open(title, link)}}, cardSelectorList);
+      const cardElement = cardItem.initiateCard();
+      userCard.addItem(cardElement);
+    }
+  }, ".gallery__container")
+  userCard.renderItems();
+  addForm._formElement.reset();
+})
+
+const popupImage = new PopupWithImage("#image-container");
+
+const initialCardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardItem = new Card({ data: item, clickHandler: (title, link) => {popupImage.open(title, link)}}, cardSelectorList);
+    const cardElement = cardItem.initiateCard();
+    initialCardList.addItem(cardElement);
+  }
+}, ".gallery__container");
+
+formSelectors.forEach((selector) => {
+  const validatedForm = new FormValidator(selector, validationObj);
   validatedForm.enableValidation();
 });
 
-exitButtons.forEach((button) => {
-  button.addEventListener("click", closeOpenedPopup);
-});
+initialCardList.renderItems();
 
-//adding event listeners section//
+bioForm.setEventListeners();
+
+addForm.setEventListeners();
+
+popupImage.setEventListeners();
+
 editButton.addEventListener("click", () => {
-  const nameValue = profileName.textContent;
-  const aboutValue = profileAbout.textContent;
-  formBio.reset();
-  inputName.value = nameValue;
-  inputAbout.value = aboutValue;
-  openPopup(popupBio);
+  const inputPrefills = userBio.getUserInfo();
+  inputName.value = inputPrefills.name;
+  inputAbout.value = inputPrefills.job;
+  bioForm.open();
 });
 
 addButton.addEventListener("click", () => {
-  formAdd.reset();
-  openPopup(popupAdd);
+  addForm.open();
 })
-
-formBio.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileAbout.textContent = inputAbout.value;
-  closeOpenedPopup();
-});
-
-formAdd.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-    addCard(inputTitle.value, inputLink.value, "#card-template");
-    closeOpenedPopup();
-    formAdd.reset();
-});
-
-export { popupImageVeil, popupImage, popupImageTitle }
