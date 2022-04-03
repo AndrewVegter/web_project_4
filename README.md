@@ -11,6 +11,7 @@ This is a picture sharing website, created as my first project using JavaScript 
 - JavaScript
 - (For the first time) OOP!
 - BEM methodology
+- Webpack and various webpack associated plugins for autoprefixing, image processing, and similar processes.
 
 ### Changes made
 
@@ -19,6 +20,7 @@ This is a picture sharing website, created as my first project using JavaScript 
 - added likebutton functionality
 - added ability to delete cards
 - restructured and refactored code into OOP
+- created webpack
 
 ### Future changes
 
