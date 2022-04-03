@@ -27,7 +27,6 @@ const addForm = new PopupWithForm("#add-container", (formObj) => {
     }
   }, ".gallery__container")
   userCard.renderItems();
-  addForm._formElement.reset();
 })
 
 const popupImage = new PopupWithImage("#image-container");
