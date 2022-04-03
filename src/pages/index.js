@@ -1,12 +1,12 @@
-import "./pages/index.css";
-import Card from "./scripts/components/Card.js";
-import Section from "./scripts/components/Section.js";
-import FormValidator from "./scripts/components/FormValidator.js";
-import PopupWithImage from "./scripts/components/PopupWithImage.js";
-import PopupWithForm from "./scripts/components/PopupWithForm.js";
-import UserInfo from "./scripts/components/UserInfo.js";
+import "./index.css";
+import Card from "../scripts/components/Card.js";
+import Section from "../scripts/components/Section.js";
+import FormValidator from "../scripts/components/FormValidator.js";
+import PopupWithImage from "../scripts/components/PopupWithImage.js";
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import UserInfo from "../scripts/components/UserInfo.js";
 import { validationObj, initialCards, cardSelectorList, inputName, 
-  inputAbout, editButton, addButton, formSelectors, userSelectors } from "./scripts/utils/constants.js";
+  inputAbout, editButton, addButton, formSelectors, userSelectors } from "../scripts/utils/constants.js";
 
 const userBio = new UserInfo({ selectors: userSelectors });
 

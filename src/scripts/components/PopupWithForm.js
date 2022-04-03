@@ -16,7 +16,7 @@ export default class PopupWithForm extends Popup {
         this._formElement.addEventListener("submit", (evt) => {
             evt.preventDefault;
             this._submitHandler(this);
-            this.close();//I do not understand why this is not triggering the "reset" event listener in the FormValidator//
+            this.close();
         })
         super.setEventListeners(); 
     }
