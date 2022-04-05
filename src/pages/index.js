@@ -10,33 +10,31 @@ import { validationObj, initialCards, cardSelectorList, inputName,
 
 const userBio = new UserInfo({ selectors: userSelectors });
 
-const bioForm = new PopupWithForm("#edit-container", (formObj) => {
-  const inputValues = formObj._getInputValues();
-  userBio.setUserInfo({ name: inputValues.input1, job: inputValues.input2 })
+const bioForm = new PopupWithForm("#edit-container", (data) => {
+  userBio.setUserInfo({ name: data.input1, job: data.input2 })
+  bioForm.close();
 });
 
-const addForm = new PopupWithForm("#add-container", (formObj) => {
-  const inputValues = formObj._getInputValues();
-  const translatedValues = {name: inputValues.input1, link: inputValues.input2};
-  const userCard = new Section({
-    items: translatedValues,
-    renderer: (item) => {
-      const cardItem = new Card({ data: item, clickHandler: (title, link) => {popupImage.open(title, link)}}, cardSelectorList);
-      const cardElement = cardItem.initiateCard();
-      userCard.addItem(cardElement);
-    }
-  }, ".gallery__container")
-  userCard.renderItems();
+const addCard = (cardData) => {
+  const cardItem = new Card({ data: cardData, clickHandler: (title, link) => {popupImage.open(title, link)}}, cardSelectorList);
+  const cardElement = cardItem.initiateCard();
+  return cardElement;
+}//since this function is very specifically used to set up and govern the interactions of 2 classes it belongs here, right?//
+
+const addForm = new PopupWithForm("#add-container", (data) => {
+  const translatedValues = {name: data.input1, link: data.input2};
+  const card = addCard(translatedValues);
+  cardList.addItem(card);
+  addForm.close();
 })
 
 const popupImage = new PopupWithImage("#image-container");
 
-const initialCardList = new Section({
+const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const cardItem = new Card({ data: item, clickHandler: (title, link) => {popupImage.open(title, link)}}, cardSelectorList);
-    const cardElement = cardItem.initiateCard();
-    initialCardList.addItem(cardElement);
+    const card = addCard(item);
+    cardList.addItem(card);
   }
 }, ".gallery__container");
 
@@ -45,7 +43,7 @@ formSelectors.forEach((selector) => {
   validatedForm.enableValidation();
 });
 
-initialCardList.renderItems();
+cardList.renderItems();
 
 bioForm.setEventListeners();
 
@@ -63,3 +61,4 @@ editButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   addForm.open();
 })
+

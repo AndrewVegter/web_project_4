@@ -13,7 +13,7 @@
   font-weight: 500;
   font-display: swap;
   src: url("./Inter-500.woff2") format("woff2"),
-    url("./inter-500.woff") format("woff");
+    url("./Inter-500.woff") format("woff");
 }
 @font-face {
   font-family: "Inter";
