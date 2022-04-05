@@ -6,7 +6,6 @@ export default class Section {
     }
 
     renderItems() {
-        if (!Array.isArray(this._items)) return this._renderer(this._items);
         return this._items.forEach(item => {this._renderer(item)});
     }
 
