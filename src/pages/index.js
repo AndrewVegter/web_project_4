@@ -19,7 +19,7 @@ const addCard = (cardData) => {
   const cardItem = new Card({ data: cardData, clickHandler: (title, link) => {popupImage.open(title, link)}}, cardSelectorList);
   const cardElement = cardItem.initiateCard();
   return cardElement;
-}//since this function is very specifically used to set up and govern the interactions of 2 classes it belongs here, right?//
+}
 
 const addForm = new PopupWithForm("#add-container", (data) => {
   const translatedValues = {name: data.input1, link: data.input2};

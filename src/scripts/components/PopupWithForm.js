@@ -25,4 +25,9 @@ export default class PopupWithForm extends Popup {
         this._formElement.reset();
         super.close();
     }
+
+    open() {
+        this._formElement.reset(); //odd that this reset triggers the reset listener in the validator, when the one in close does not//
+        super.open();
+    }
 }
