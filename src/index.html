@@ -16,21 +16,30 @@
     </header>
     <main class="main">
       <section class="profile">
-        <img
-          class="profile__avatar"
-          src="<%=require('./images/image-Profile.jpg')%>"
-          alt="Profile picture"
-        />
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="" alt="Profile picture" />
+          <button
+            type="button"
+            class="profile__avatar-button"
+            name="edit-avatar"
+          >
+            <img
+              class="profile__avatar-button-icon"
+              src="<%=require('./images/edit.svg')%>"
+              alt="edit avatar button"
+            />
+          </button>
+        </div>
         <div class="profile__bio">
-          <h1 class="profile__name">Jacques Cousteau</h1>
+          <h1 class="profile__name"></h1>
           <button type="button" name="edit" class="profile__edit-button">
             <img
               class="profile__edit-button-icon"
               src="<%=require('./images/edit.svg')%>"
-              alt="edit button"
+              alt="edit bio button"
             />
           </button>
-          <p class="profile__career">Explorer</p>
+          <p class="profile__career"></p>
         </div>
         <button type="button" name="add" class="profile__add-button">
           <img
@@ -61,9 +70,10 @@
             <input
               type="text"
               id="name"
+              name="name"
+              value=""
               class="popup__input"
               placeholder="Name"
-              value=""
               required
               minlength="2"
               maxlength="40"
@@ -73,17 +83,18 @@
           <label class="popup__field">
             <input
               type="text"
-              id="about-me"
+              name="about"
+              id="job"
+              value=""
               class="popup__input"
               placeholder="About me"
-              value=""
               required
               minlength="2"
               maxlength="200"
             />
-            <span class="popup__error popup__error_type_about-me"></span>
+            <span class="popup__error popup__error_type_job"></span>
           </label>
-          <button type="submit" class="popup__button">Save</button>
+          <button type="submit" name="Save" class="popup__button">Save</button>
         </form>
       </div>
     </div>
@@ -104,6 +115,7 @@
               class="popup__input"
               placeholder="Title"
               value=""
+              name="name"
               required
               minlength="1"
               maxlength="30"
@@ -113,16 +125,59 @@
           <label class="popup__field">
             <input
               type="url"
-              id="image"
+              id="link"
+              name="link"
               class="popup__input"
               placeholder="Image URL"
               value=""
               required
             />
-            <span class="popup__error popup__error_type_image"></span>
+            <span class="popup__error popup__error_type_link"></span>
           </label>
-          <button type="submit" class="popup__button">Create</button>
+          <button type="submit" name="Create" class="popup__button">
+            Create
+          </button>
         </form>
+      </div>
+    </div>
+    <div id="avatar-container" class="popup invisible">
+      <div class="popup__container">
+        <button
+          id="exit-avatar"
+          type="button"
+          name="exit"
+          class="popup__exit-button"
+        ></button>
+        <form id="edit-avatar" class="popup__form" novalidate>
+          <h2 class="popup__title">Change profile picture</h2>
+          <label class="popup__field">
+            <input
+              type="url"
+              id="avatar"
+              name="avatar"
+              class="popup__input"
+              placeholder="Avatar URL"
+              value=""
+              required
+            />
+            <span class="popup__error popup__error_type_avatar"></span>
+          </label>
+          <button type="submit" name="Save" class="popup__button">Save</button>
+        </form>
+      </div>
+    </div>
+    <div id="delete-container" class="popup invisible">
+      <div class="popup__container">
+        <button
+          id="exit-delete"
+          type="button"
+          name="exit"
+          class="popup__exit-button"
+        ></button>
+        <div id="delete" class="popup__form">
+          <h2 class="popup__title popup__title_margin_low">Are you sure?</h2>
+          <button type="button" class="popup__button">Yes</button>
+        </div>
       </div>
     </div>
     <div id="image-container" class="popup invisible">
@@ -147,7 +202,10 @@
         <img class="gallery__image" src=" " alt=" " />
         <div class="gallery__plaque">
           <h2 class="gallery__title"></h2>
-          <button type="button" name="like" class="gallery__button"></button>
+          <div class="gallery__like-container">
+            <button type="button" name="like" class="gallery__button"></button>
+            <p class="gallery__like-count">0</p>
+          </div>
         </div>
       </li>
     </template>

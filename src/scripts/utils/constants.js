@@ -6,33 +6,6 @@ const validationObj = {
     errorClass: "popup__error_visible"
 }
 
-const initialCards = [
-    {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-    },
-    {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-    },
-    {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-    },
-    {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-    },
-    {
-      name: "Vanoise National Park",
-      link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-    }
-];
-
 const cardSelectorList = {
   templateSelector: "#card-template",
   likeActiveClass: "gallery__button_active",
@@ -40,15 +13,17 @@ const cardSelectorList = {
   likeSelector: ".gallery__button",
   imageSelector: ".gallery__image",
   titleSelector: ".gallery__title",
-  cardSelector: ".gallery__cell"
+  cardSelector: ".gallery__cell",
+  likeCountSelector: ".gallery__like-count"
 }
 
 const inputName = document.querySelector("#name");
-const inputAbout = document.querySelector("#about-me");
+const inputJob = document.querySelector("#job");
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
-const formSelectors = ["#edit-bio", "#add-image"];
-const userSelectors = {nameSelector: ".profile__name", jobSelector: ".profile__career"};
+const avatarButton = document.querySelector(".profile__avatar-button");
+const formSelectors = ["#edit-bio", "#add-image", "#edit-avatar"];
+const userSelectors = {nameSelector: ".profile__name", jobSelector: ".profile__career", imageSelector: ".profile__avatar"};
 
 
-export { validationObj, initialCards, cardSelectorList, inputName, inputAbout, editButton, addButton, formSelectors, userSelectors }
+export { validationObj, cardSelectorList, inputName, inputJob, editButton, addButton, formSelectors, userSelectors, avatarButton }

@@ -1,15 +1,20 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector, subitHandler) {
+    constructor(popupSelector, submitHandler) {
         super(popupSelector);
-        this._submitHandler = subitHandler;
+        this._submitHandler = submitHandler;
         this._formElement = this._popupElement.querySelector(".popup__form");
+        this._submitButton = this._formElement.querySelector(".popup__button");
     }
 
     _getInputValues() {
         const inputList = this._formElement.querySelectorAll(".popup__input");
-        return {input1: inputList[0].value, input2: inputList[1].value};
+        const results = {};
+        inputList.forEach((input) => {
+            results[`${input.name}`] = input.value;
+        })
+        return results;
     }
 
     setEventListeners() {
@@ -29,5 +34,12 @@ export default class PopupWithForm extends Popup {
     open() {
         this._formElement.reset(); //odd that this reset triggers the reset listener in the validator, when the one in close does not//
         super.open();
+    }
+
+    renderLoading = (isLoading) => {
+        if (isLoading) {
+            return this._submitButton.textContent = "Saving...";
+        }
+        return this._submitButton.textContent = this._submitButton.name; 
     }
 }

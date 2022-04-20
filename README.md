@@ -12,6 +12,7 @@ This is a picture sharing website, created as my first project using JavaScript 
 - (For the first time) OOP!
 - BEM methodology
 - Webpack and various webpack associated plugins for autoprefixing, image processing, and similar processes.
+- an API
 
 ### Changes made
 
@@ -21,12 +22,13 @@ This is a picture sharing website, created as my first project using JavaScript 
 - added ability to delete cards
 - restructured and refactored code into OOP
 - created webpack
+- added API utility! - No longer resets entirely on reload! :)
 
 ### Future changes
 
-- Add a way to change profile picture
+- None, aside from code corrections, it seems like this is my last time working on this project... I'll always remember you, first JS project!
 
-### Compatable with recent versions of
+### Compatable with most versions of
 
 - Chrome
 - Firefox
