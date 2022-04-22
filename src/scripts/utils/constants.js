@@ -17,8 +17,6 @@ const cardSelectorList = {
   likeCountSelector: ".gallery__like-count"
 }
 
-const inputName = document.querySelector("#name");
-const inputJob = document.querySelector("#job");
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const avatarButton = document.querySelector(".profile__avatar-button");
@@ -26,4 +24,4 @@ const formSelectors = ["#edit-bio", "#add-image", "#edit-avatar"];
 const userSelectors = {nameSelector: ".profile__name", jobSelector: ".profile__career", imageSelector: ".profile__avatar"};
 
 
-export { validationObj, cardSelectorList, inputName, inputJob, editButton, addButton, formSelectors, userSelectors, avatarButton }
+export { validationObj, cardSelectorList, editButton, addButton, formSelectors, userSelectors, avatarButton }

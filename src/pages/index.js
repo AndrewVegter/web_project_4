@@ -7,8 +7,7 @@ import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupWithConfirmation from "../scripts/components/PopupWithConfirmation.js";
 import UserInfo from "../scripts/components/UserInfo.js";
-import { validationObj, cardSelectorList, inputName, 
-  inputJob, editButton, addButton, formSelectors, userSelectors, avatarButton } from "../scripts/utils/constants.js";
+import { validationObj, cardSelectorList, editButton, addButton, formSelectors, userSelectors, avatarButton } from "../scripts/utils/constants.js";
 
 //Here to line 120: initiating classes
 
@@ -157,4 +156,3 @@ addButton.addEventListener("click", () => {
 avatarButton.addEventListener("click", () => {
   avatarForm.open();
 })
-
