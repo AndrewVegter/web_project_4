@@ -123,7 +123,6 @@ formSelectors.forEach((selector) => {
 Promise.all([projectApi.getUserInfo(), projectApi.getInitialCards()])
   .then(([userData, cards]) => {
     userBio.setUserInfo(userData);
-    userBio.id = userData._id;
     cards.forEach((item) => {
       cardSection.addItem(item, false);
     })
