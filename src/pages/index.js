@@ -10,103 +10,129 @@ import UserInfo from "../scripts/components/UserInfo.js";
 import { validationObj, cardSelectorList, inputName, 
   inputJob, editButton, addButton, formSelectors, userSelectors, avatarButton } from "../scripts/utils/constants.js";
 
+//Here to line 120: initiating classes
+
+const projectApi = new Api("https://around.nomoreparties.co/v1/group-12", 
+{ authorization: "1ef576b8-6d38-4f6c-aed4-fbb58187f608", "Content-Type": "application/json" });
+
 const userBio = new UserInfo({ selectors: userSelectors });
 
-const projectApi = new Api("https://around.nomoreparties.co/v1/group-12", "1ef576b8-6d38-4f6c-aed4-fbb58187f608");
-
-var me = await projectApi.getUserInfo();
-
-var focusedObj = null;
-
-userBio.setUserInfo(me)
-
-userBio.setUserAvatar(me.avatar)
-
-const initialCardList = await projectApi.getInitialCards();
-
-const bioForm = new PopupWithForm("#edit-container", (data) => {
-  bioForm.renderLoading(true);
-  projectApi.updateUserData(data).then((res) => {
-    me = res;
-    userBio.setUserInfo(res);
-  }).finally(() => {
-    bioForm.renderLoading(false);
-    bioForm.close();
-  })
-});
-
-const addCard = (cardData) => {
+const cardSection = new Section({
+  renderer: (cardData) => {
   const cardItem = new Card({ data: cardData, 
   clickHandler: (title, link) => {popupImage.open(title, link)}, 
   likeHandler: (obj) => {
     if (!obj.isLiked) {
-      obj.likeCard();
       projectApi.likeCard(obj.id)
-      .then((res) => obj.setLikeCount(res.likes.length))}
+      .then((res) => {
+        obj.likeCard();
+        obj.setLikeCount(res.likes.length);
+      })
+      .catch(err => console.log(err))}
     else {
-      obj.unlikeCard();//it just feels bad putting this behind the server response, like the website is lagging, but I wil if I must//
       projectApi.unlikeCard(obj.id)
-      .then((res) => obj.setLikeCount(res.likes.length))}
+      .then((res) => {
+        obj.unlikeCard();
+        obj.setLikeCount(res.likes.length);
+      })
+      .catch(err => console.log(err))}
     }, 
   deleteHandler: (obj) => {
-    focusedObj = obj;
-    deleteConfirmaton.open();
+    deleteConfirmaton.open(obj);
   }, 
-  userObj: me}, 
+  userID: userBio.id}, 
   cardSelectorList);
-  if (cardData.owner._id === me._id) {
-    const cardElement = cardItem.initiateCard(true);
-    return cardElement;
-  }
-  const cardElement = cardItem.initiateCard(false);
+  const isUserCard = cardData.owner._id === userBio.id;
+  const cardElement = cardItem.initiateCard(isUserCard);
   return cardElement;
 }
+}, ".gallery__container");
+
+const bioForm = new PopupWithForm("#edit-container", (data) => {
+  bioForm.renderLoading();
+  projectApi.updateUserData(data)
+  .then((res) => {
+    bioForm.renderSuccess();
+    userBio.setUserInfo(res);
+    setTimeout(() => bioForm.close(), 350);
+  })
+  .catch((err) => {
+    console.log(err);
+    bioForm.renderError(err);
+  })
+  .finally(() => {
+    setTimeout(() => bioForm.restoreButtonDefaults(), 1500);
+  })
+});
 
 const addForm = new PopupWithForm("#add-container", (data) => {
-  addForm.renderLoading(true);
-  projectApi.addNewCard(data).then((res) => {
-    return addCard(res);
-  }).then((element) => {
-    cardList.addItem(element);
-  }).finally(() => {
-    addForm.renderLoading(false);
-    addForm.close();
+  addForm.renderLoading();
+  projectApi.addNewCard(data)
+  .then((res) => {
+    addForm.renderSuccess();
+    cardSection.addItem(res, true);
+    setTimeout(() => addForm.close(), 350);
+  })
+  .catch((err) => {
+    console.log(err);
+    addForm.renderError(err);
+  })
+  .finally(() => {
+    setTimeout(() => addForm.restoreButtonDefaults(), 1500);
   })
 })
 
 const avatarForm = new PopupWithForm("#avatar-container", (data) => {
-  avatarForm.renderLoading(true);
-  projectApi.updateUserAvatar(data).then((res) => {
-    userBio.setUserAvatar(res.avatar);
-    me = res;
-  }).finally(() => {
-    avatarForm.renderLoading(false);
-    avatarForm.close();
+  avatarForm.renderLoading();
+  projectApi.updateUserAvatar(data)
+  .then((res) => {
+    avatarForm.renderSuccess();
+    userBio.setUserInfo(res);
+    setTimeout(() => avatarForm.close(), 350);
+  })
+  .catch((err) => {
+    console.log(err);
+    avatarForm.renderError(err);
+  })
+  .finally(() => {
+    setTimeout(() => avatarForm.restoreButtonDefaults(), 1500);
   })
 })
 
 const deleteConfirmaton = new PopupWithConfirmation("#delete-container", () => {
-  projectApi.deleteCard(focusedObj.id).then(focusedObj.deleteCard())
-  deleteConfirmaton.close();
-  focusedObj = null;
+  projectApi.deleteCard(deleteConfirmaton.focusedObj.id)
+  .then(() => {
+    deleteConfirmaton.focusedObj.deleteCard();
+    deleteConfirmaton.focusedObj = null;
+    deleteConfirmaton.close();
+  })
+  .catch((err) => {
+    console.log(err);
+    deleteConfirmaton.renderError("Failed to delete");
+  })
 })
 
 const popupImage = new PopupWithImage("#image-container");
-
-const cardList = new Section({
-  items: initialCardList,
-  renderer: (item) => {
-    const card = addCard(item);
-    cardList.addItem(card);
-  }
-}, ".gallery__container");
 
 formSelectors.forEach((selector) => {
   const validatedForm = new FormValidator(selector, validationObj);
   validatedForm.enableValidation();
 });
+//Also, sorry if I wasn't allowed to add all these extra UX changes, just thought it looked nice and was a good way to communicate success/failure
 
-cardList.renderItems();
+//here to line 145: calling methods
+Promise.all([projectApi.getUserInfo(), projectApi.getInitialCards()])
+  .then(([userData, cards]) => {
+    userBio.setUserInfo(userData);
+    userBio.id = userData._id;
+    cards.forEach((item) => {
+      cardSection.addItem(item, false);
+    })
+  })
+  .catch(([userErr, cardsErr]) => {
+    console.log(userErr);
+    console.log(cardsErr);
+  });
 
 bioForm.setEventListeners();
 
@@ -118,11 +144,10 @@ deleteConfirmaton.setEventListeners();
 
 popupImage.setEventListeners();
 
+//here to end: adding event listeners
 editButton.addEventListener("click", () => {
-  const inputPrefills = userBio.getUserInfo();
+  bioForm.setInputValues(userBio.getUserInfo());
   bioForm.open();
-  inputName.value = inputPrefills.name;
-  inputJob.value = inputPrefills.about;
 });
 
 addButton.addEventListener("click", () => {

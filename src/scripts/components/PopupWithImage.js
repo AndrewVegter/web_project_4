@@ -6,11 +6,11 @@ export default class PopupWithImage extends Popup {
     }
 
     open(title, link) {
-        const popupImage = this._popupElement.querySelector(".popup__image");
-        const popupImageTitle = this._popupElement.querySelector(".popup__image-title");
-        popupImage.src = link;
-        popupImage.alt = `Image of ${title}`;
-        popupImageTitle.textContent = title;
+        this._popupImage = this._popupElement.querySelector(".popup__image");
+        this._popupImageTitle = this._popupElement.querySelector(".popup__image-title");
+        this._popupImage.src = link;
+        this._popupImage.alt = `Image of ${title}`;
+        this._popupImageTitle.textContent = title;
         super.open();
     }
 }

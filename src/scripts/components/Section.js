@@ -1,15 +1,12 @@
 export default class Section {
-    constructor({ items, renderer }, containerSelector) {
-        this._items = items;
+    constructor({ renderer }, containerSelector) {
         this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
     }
 
-    renderItems() {
-        return this._items.forEach(item => {this._renderer(item)});
-    }
-
-    addItem(element) {
-        this._container.prepend(element);
+    addItem(item, isNew) {
+        const card = this._renderer(item)
+        if (isNew) return this._container.prepend(card); //no more scrolling to the bottom to see if my card saved/deleted/stayed liked
+        return this._container.append(card);
     }
 }

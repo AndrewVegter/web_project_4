@@ -6,13 +6,13 @@ export default class PopupWithForm extends Popup {
         this._submitHandler = submitHandler;
         this._formElement = this._popupElement.querySelector(".popup__form");
         this._submitButton = this._formElement.querySelector(".popup__button");
+        this._inputList = this._formElement.querySelectorAll(".popup__input");
     }
 
     _getInputValues() {
-        const inputList = this._formElement.querySelectorAll(".popup__input");
         const results = {};
-        inputList.forEach((input) => {
-            results[`${input.name}`] = input.value;
+        this._inputList.forEach((input) => {
+            results[input.name] = input.value;
         })
         return results;
     }
@@ -26,20 +26,35 @@ export default class PopupWithForm extends Popup {
         super.setEventListeners(); 
     }
 
+    setInputValues = (data) => {
+        this._inputList.forEach((input) => {
+            input.value = data[input.name];
+        })
+    }
+
     close() {
         this._formElement.reset();
         super.close();
     }
 
-    open() {
-        this._formElement.reset(); //odd that this reset triggers the reset listener in the validator, when the one in close does not//
-        super.open();
+    renderLoading = () => {
+        this._submitButton.textContent = "Saving...";
+        this._submitButton.setAttribute("disabled", true);
     }
 
-    renderLoading = (isLoading) => {
-        if (isLoading) {
-            return this._submitButton.textContent = "Saving...";
-        }
-        return this._submitButton.textContent = this._submitButton.name; 
+    renderError = (error) => {
+        this._submitButton.textContent = error;
+        this._submitButton.classList.add("popup__button_status_error");
+    }
+
+    renderSuccess = () => {
+        this._submitButton.textContent = "Saved!";
+        this._submitButton.classList.add("popup__button_status_success")
+    }
+
+    restoreButtonDefaults = () => {
+        this._submitButton.textContent = this._submitButton.name;
+        this._submitButton.classList.remove("popup__button_status_error", "popup__button_status_success");
+        this._submitButton.removeAttribute("disabled");
     }
 }
